@@ -170,6 +170,17 @@ module Azure
       # Public: Set the host for SQL Management API (SQL Server authentication Endpoint)
       attr_accessor :sql_database_management_endpoint
 
+      #===================================================================
+      #*******************Management API configuration********************
+      #===================================================================
+
+      # Public: Set the host for SQL Management API (SQL Server authentication Endpoint)
+      attr_accessor :push_namespace
+      # Public: Set the host for SQL Management API (SQL Server authentication Endpoint)
+      attr_accessor :push_hub
+      # Public: Set the host for SQL Management API (SQL Server authentication Endpoint)
+      attr_accessor :push_access_key
+
       def management_endpoint
         if @management_endpoint.nil? or @management_endpoint.empty?
           "https://management.core.windows.net/"
