@@ -46,12 +46,12 @@ module Azure
           tags = tags.join(' || ')
         end
         uri = URI(url)
-        content_type = %w(apple gcm template).include?(format) ? 'application/json' : 'application/xml;charset=utf-8'
+        content_type = %w(gcm template).include?(format) ? 'application/json' : 'application/xml'
         headers = {
-            'Content-Type' => 'application/xml',
+            'Content-Type' => content_type,
             'Authorization' => Azure::Push::Sas.sas_token(url, @key_name, @access_key),
-            'ServiceBusNotification-Format' => 'apple',
-            'ServiceBusNotification-Tags' => 'uniqueTag'
+            'ServiceBusNotification-Format' => format,
+            'ServiceBusNotification-Tags' => tags
         }.merge(additional_headers)
         http = Net::HTTP.new(uri.host,uri.port)
         http.use_ssl = true
